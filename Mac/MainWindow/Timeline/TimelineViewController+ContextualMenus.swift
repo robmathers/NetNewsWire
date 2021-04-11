@@ -176,7 +176,7 @@ private extension TimelineViewController {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
 			menu.addSeparatorIfNeeded()
-			menu.addItem(copyURLMenuItem(link))
+			menu.addItem(copyArticleURLMenuItem(link))
 			
 			if let externalLink = articles.first?.externalURL {
 				menu.addItem(copyExternalURLMenuItem(externalLink))
@@ -274,7 +274,7 @@ private extension TimelineViewController {
 		return menuItem(NSLocalizedString("Open in Browser", comment: "Command"), #selector(openInBrowserFromContextualMenu(_:)), urlString)
 	}
 	
-	func copyURLMenuItem(_ urlString: String) -> NSMenuItem {
+	func copyArticleURLMenuItem(_ urlString: String) -> NSMenuItem {
 		return menuItem(NSLocalizedString("Copy Article URL", comment: "Command"), #selector(copyURLFromContextualMenu(_:)), urlString)
 	}
 	
