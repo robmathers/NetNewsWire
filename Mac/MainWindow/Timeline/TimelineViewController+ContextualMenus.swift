@@ -271,7 +271,7 @@ private extension TimelineViewController {
 	
 	func copyURLMenuItem(_ urlString: String) -> NSMenuItem {
 		// TODO: localized string
-		return menuItem("Copy URL", #selector(copyURLFromContextualMenu(_:)), urlString)
+		return menuItem("Copy Article URL", #selector(copyURLFromContextualMenu(_:)), urlString)
 	}
 
 	func menuItem(_ title: String, _ action: Selector, _ representedObject: Any) -> NSMenuItem {
