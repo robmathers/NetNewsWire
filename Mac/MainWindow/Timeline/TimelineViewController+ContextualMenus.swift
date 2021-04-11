@@ -90,6 +90,14 @@ extension TimelineViewController {
 		}
 		Browser.open(urlString, inBackground: false)
 	}
+	
+	@objc func copyURLFromContextualMenu(_ sender: Any?) {
+		guard let menuItem = sender as? NSMenuItem, let urlString = menuItem.representedObject as? String else {
+			return
+		}
+		// TODO: actual copy implementation
+		print("Copy:", urlString)
+	}
 
 	@objc func performShareServiceFromContextualMenu(_ sender: Any?) {
 		guard let menuItem = sender as? NSMenuItem, let sharingCommandInfo = menuItem.representedObject as? SharingCommandInfo else {
@@ -168,6 +176,7 @@ private extension TimelineViewController {
 		if articles.count == 1, let link = articles.first!.preferredLink {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
+			menu.addItem(copyURLMenuItem(link))
 		}
 
 		if let sharingMenu = shareMenu(for: articles) {
@@ -259,6 +268,11 @@ private extension TimelineViewController {
 	func openInBrowserMenuItem(_ urlString: String) -> NSMenuItem {
 
 		return menuItem(NSLocalizedString("Open in Browser", comment: "Command"), #selector(openInBrowserFromContextualMenu(_:)), urlString)
+	}
+	
+	func copyURLMenuItem(_ urlString: String) -> NSMenuItem {
+		// TODO: localized string
+		return menuItem("Copy URL", #selector(copyURLFromContextualMenu(_:)), urlString)
 	}
 
 	func menuItem(_ title: String, _ action: Selector, _ representedObject: Any) -> NSMenuItem {
