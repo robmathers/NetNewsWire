@@ -175,6 +175,7 @@ private extension TimelineViewController {
 		if articles.count == 1, let link = articles.first!.preferredLink {
 			menu.addSeparatorIfNeeded()
 			menu.addItem(openInBrowserMenuItem(link))
+			menu.addSeparatorIfNeeded()
 			menu.addItem(copyURLMenuItem(link))
 		}
 
