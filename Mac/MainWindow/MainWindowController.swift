@@ -293,7 +293,7 @@ class MainWindowController : NSWindowController, NSUserInterfaceValidations {
 	}
 
 	@IBAction func copyExternalURL(_ sender: Any?) {
-		if let link = selectedArticles?.first?.externalURL {
+		if let link = oneSelectedArticle?.externalURL {
 			URLPasteboardWriter.write(urlString: link, to: .general)
 		}
 	}
