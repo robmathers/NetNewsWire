@@ -95,8 +95,7 @@ extension TimelineViewController {
 		guard let menuItem = sender as? NSMenuItem, let urlString = menuItem.representedObject as? String else {
 			return
 		}
-		// TODO: actual copy implementation
-		print("Copy:", urlString)
+		URLPasteboardWriter.write(urlString: urlString, to: .general)
 	}
 
 	@objc func performShareServiceFromContextualMenu(_ sender: Any?) {
