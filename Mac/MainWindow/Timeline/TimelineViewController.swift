@@ -357,12 +357,6 @@ final class TimelineViewController: NSViewController, UndoableCommandRunner, Unr
 	@IBAction func copy(_ sender: Any?) {
 		NSPasteboard.general.copyObjects(selectedArticles)
 	}
-	
-	@IBAction func copyArticleURL(_ sender: Any?) {
-		if let link = selectedArticles.first?.preferredLink {
-			URLPasteboardWriter.write(urlString: link, to: .general)
-		}
-	}
 
 	@IBAction func selectNextUp(_ sender: Any?) {
 		guard let lastSelectedRow = tableView.selectedRowIndexes.last else {
