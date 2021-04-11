@@ -286,6 +286,12 @@ class MainWindowController : NSWindowController, NSUserInterfaceValidations {
 
 	}
 
+	@IBAction func copyArticleURL(_ sender: Any?) {
+		if let link = currentLink {
+			URLPasteboardWriter.write(urlString: link, to: .general)
+		}
+	}
+
 	@IBAction func openArticleInBrowser(_ sender: Any?) {
 		if let link = currentLink {
 			Browser.open(link, invertPreference: NSApp.currentEvent?.modifierFlags.contains(.shift) ?? false)
