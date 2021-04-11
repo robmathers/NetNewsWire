@@ -177,6 +177,10 @@ private extension TimelineViewController {
 			menu.addItem(openInBrowserMenuItem(link))
 			menu.addSeparatorIfNeeded()
 			menu.addItem(copyURLMenuItem(link))
+			
+			if let externalLink = articles.first?.externalURL {
+				menu.addItem(copyExternalURLMenuItem(externalLink))
+			}
 		}
 
 		if let sharingMenu = shareMenu(for: articles) {
@@ -273,6 +277,11 @@ private extension TimelineViewController {
 	func copyURLMenuItem(_ urlString: String) -> NSMenuItem {
 		return menuItem(NSLocalizedString("Copy Article URL", comment: "Command"), #selector(copyURLFromContextualMenu(_:)), urlString)
 	}
+	
+	func copyExternalURLMenuItem(_ urlString: String) -> NSMenuItem {
+		return menuItem(NSLocalizedString("Copy External URL", comment: "Command"), #selector(copyURLFromContextualMenu(_:)), urlString)
+	}
+
 
 	func menuItem(_ title: String, _ action: Selector, _ representedObject: Any) -> NSMenuItem {
 
