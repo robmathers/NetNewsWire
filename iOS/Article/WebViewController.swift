@@ -240,6 +240,7 @@ class WebViewController: UIViewController {
 		}
 
 		let activityViewController = UIActivityViewController(url: url, title: article?.title, applicationActivities: [FindInArticleActivity(), OpenInBrowserActivity(), CopyArticleURLActivity()])
+		// TODO: figure out how to neatly flag that external url is available for share sheet
 		activityViewController.popoverPresentationController?.barButtonItem = popOverBarButtonItem
 		present(activityViewController, animated: true)
 	}
