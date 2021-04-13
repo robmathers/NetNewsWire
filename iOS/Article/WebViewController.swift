@@ -239,7 +239,7 @@ class WebViewController: UIViewController {
 			return
 		}
 
-		let activityViewController = UIActivityViewController(url: url, title: article?.title, applicationActivities: [FindInArticleActivity(), OpenInBrowserActivity()])
+		let activityViewController = UIActivityViewController(url: url, title: article?.title, applicationActivities: [FindInArticleActivity(), OpenInBrowserActivity(), CopyArticleURLActivity()])
 		activityViewController.popoverPresentationController?.barButtonItem = popOverBarButtonItem
 		present(activityViewController, animated: true)
 	}
