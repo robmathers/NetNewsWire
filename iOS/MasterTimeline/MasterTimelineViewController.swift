@@ -362,8 +362,15 @@ class MasterTimelineViewController: UITableViewController, UndoableCommandRunner
 				menuElements.append(UIMenu(title: "", options: .displayInline, children: secondaryActions))
 			}
 			
+			var copyActions = [UIAction]()
 			if let action = self.copyArticleURLAction(article) {
-				menuElements.append(UIMenu(title: "", options: .displayInline, children: [action]))
+				copyActions.append(action)
+			}
+			if let action = self.copyExternalURLAction(article) {
+				copyActions.append(action)
+			}
+			if !copyActions.isEmpty {
+				menuElements.append(UIMenu(title: "", options: .displayInline, children: copyActions))
 			}
 			
 			if let action = self.openInBrowserAction(article) {
@@ -900,6 +907,16 @@ private extension MasterTimelineViewController {
 		}
 		return action
 	}
+	
+	func copyExternalURLAction(_ article: Article) -> UIAction? {
+		guard let externalURL = article.externalURL, let url = URL(string: externalURL) else { return nil }
+		let title = NSLocalizedString("Copy External URL", comment: "Copy External URL")
+		let action = UIAction(title: title, image: AppAssets.copyImage) { action in
+			UIPasteboard.general.url = url
+		}
+		return action
+	}
+
 
 	func openInBrowserAction(_ article: Article) -> UIAction? {
 		guard let preferredLink = article.preferredLink, let _ = URL(string: preferredLink) else {
