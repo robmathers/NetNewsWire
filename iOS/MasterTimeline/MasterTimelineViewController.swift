@@ -911,8 +911,8 @@ private extension MasterTimelineViewController {
 		return action
 	}
 	
-	func shareDialogForTableCell(indexPath: IndexPath, url: URL, title: String?) {
-		let activityViewController = UIActivityViewController(url: url, title: title, applicationActivities: [CopyArticleURLActivity()])
+	func shareDialogForTableCell(indexPath: IndexPath, url: URL, title: String?, externalURL: URL?) {
+		let activityViewController = UIActivityViewController(url: url, title: title, externalURL: externalURL,  applicationActivities: [CopyArticleURLActivity()])
 		
 		guard let cell = tableView.cellForRow(at: indexPath) else { return }
 		let popoverController = activityViewController.popoverPresentationController
@@ -927,9 +927,10 @@ private extension MasterTimelineViewController {
 			return nil
 		}
 				
+		let externalURL = article.externalURL.flatMap(URL.init(string:))
 		let title = NSLocalizedString("Share", comment: "Share")
 		let action = UIAction(title: title, image: AppAssets.shareImage) { [weak self] action in
-			self?.shareDialogForTableCell(indexPath: indexPath, url: url, title: article.title)
+			self?.shareDialogForTableCell(indexPath: indexPath, url: url, title: article.title, externalURL: externalURL)
 		}
 		return action
 	}
@@ -939,10 +940,11 @@ private extension MasterTimelineViewController {
 			return nil
 		}
 		
+		let externalURL = article.externalURL.flatMap(URL.init(string:))
 		let title = NSLocalizedString("Share", comment: "Share")
 		let action = UIAlertAction(title: title, style: .default) { [weak self] action in
 			completion(true)
-			self?.shareDialogForTableCell(indexPath: indexPath, url: url, title: article.title)
+			self?.shareDialogForTableCell(indexPath: indexPath, url: url, title: article.title, externalURL: externalURL)
 		}
 		return action
 	}

@@ -9,10 +9,16 @@
 import UIKit
 
 extension UIActivityViewController {
-	convenience init(url: URL, title: String?, applicationActivities: [UIActivity]?) {
+	convenience init(url: URL, title: String?, externalURL: URL?, applicationActivities: [UIActivity]?) {
 		let itemSource = ArticleActivityItemSource(url: url, subject: title)
 		let titleSource = TitleActivityItemSource(title: title)
 		
-		self.init(activityItems: [titleSource, itemSource], applicationActivities: applicationActivities)
+		var activityItems = [titleSource, itemSource]
+		
+		if let externalURL = externalURL {
+			activityItems.append(ExternalURLActivityItemSource(url: externalURL, subject: title))
+		}
+		
+		self.init(activityItems: activityItems, applicationActivities: applicationActivities)
 	}
 }
