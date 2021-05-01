@@ -18,7 +18,7 @@ class CopyArticleURLActivity: UIActivity {
 	}
 	
 	override var activityType: UIActivity.ActivityType? {
-		UIActivity.ActivityType(rawValue: "com.ranchero.NetNewsWire.copyArticleURL")
+		.copyArticleURL
 	}
 	
 	override var activityImage: UIImage? {
@@ -42,4 +42,8 @@ class CopyArticleURLActivity: UIActivity {
 		}
 		UIPasteboard.general.url = url
 	}
+}
+
+extension UIActivity.ActivityType {
+	static let copyArticleURL = UIActivity.ActivityType(rawValue: "com.ranchero.NetNewsWire.copyArticleURL")
 }
