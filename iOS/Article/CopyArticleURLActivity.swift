@@ -9,7 +9,7 @@
 import UIKit
 import MobileCoreServices
 
-class CopyArticleURLActivity: UIActivity {
+final class CopyArticleURLActivity: UIActivity {
 	
 	private var activityItems: [Any]?
 	
