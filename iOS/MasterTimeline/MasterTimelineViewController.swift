@@ -909,7 +909,7 @@ private extension MasterTimelineViewController {
 	}
 	
 	func copyExternalURLAction(_ article: Article) -> UIAction? {
-		guard let externalURL = article.externalURL, let url = URL(string: externalURL) else { return nil }
+		guard let externalURL = article.externalURL, externalURL != article.preferredLink, let url = URL(string: externalURL) else { return nil }
 		let title = NSLocalizedString("Copy External URL", comment: "Copy External URL")
 		let action = UIAction(title: title, image: AppAssets.copyImage) { action in
 			UIPasteboard.general.url = url

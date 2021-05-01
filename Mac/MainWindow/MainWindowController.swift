@@ -1033,7 +1033,7 @@ private extension MainWindowController {
 	}
 	
 	func canCopyExternalURL() -> Bool {
-		return oneSelectedArticle?.externalURL != nil
+		return oneSelectedArticle?.externalURL != nil && oneSelectedArticle?.externalURL != currentLink
 	}
 
 	func canGoToNextUnread(wrappingToTop wrapping: Bool = false) -> Bool {
